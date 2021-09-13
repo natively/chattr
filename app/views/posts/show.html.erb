@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col">
+    <strong>
+      <%= @post.title %>
+    </strong>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-2">
+    <%= @post.user.name %>
+  </div>
+
+  <div class="col">
+    <p>
+      <%= @post.content %>
+    </p>
+  </div>
+
+  <div class="col-2">
+    <%= link_to 'Edit', edit_post_path(@post) %> |
+    <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
+
+
+<% @replies.each do |reply| %>
+  <%= render 'reply', reply: reply %>
+<% end %>
+
+<%= link_to 'Reply', new_reply_path(post_id: @post.id) %>
